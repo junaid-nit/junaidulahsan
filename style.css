@@ -7,6 +7,10 @@ body {
   scroll-behavior: smooth;
 }
 
+/* ===========================
+   Hero Section
+   =========================== */
+
 header.hero {
   text-align: center;
   padding: 60px 20px 40px;
@@ -46,18 +50,28 @@ header.hero {
   color: #f1f1f1;
 }
 
+/* ===========================
+   Buttons
+   =========================== */
+
 .btn {
+  display: inline-block;
   background-color: #e6b65b;
   color: #0c2340;
   padding: 10px 20px;
   border-radius: 25px;
   text-decoration: none;
   font-weight: 600;
+  margin: 8px;
 }
 
 .btn:hover {
   opacity: 0.85;
 }
+
+/* ===========================
+   Sections
+   =========================== */
 
 .section {
   max-width: 800px;
@@ -72,6 +86,10 @@ header.hero {
   padding-bottom: 5px;
 }
 
+/* ===========================
+   Footer
+   =========================== */
+
 footer {
   text-align: center;
   padding: 20px;
@@ -84,116 +102,77 @@ footer {
    Classroom Notes Gallery
    =========================== */
 
-.notes-gallery{
-    display:flex;
-    flex-wrap:wrap;
-    gap:20px;
-    justify-content:center;
+.notes-gallery {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
 }
 
-.note-img{
-    width:260px;
-    height:auto;
-    cursor:pointer;
-    border-radius:8px;
-    border:2px solid #ddd;
-    transition:transform .3s ease;
+.note-img {
+  width: 260px;
+  height: auto;
+  cursor: pointer;
+  border-radius: 8px;
+  border: 2px solid #ddd;
+  transition: transform 0.3s ease;
 }
 
-.note-img:hover{
-    transform:scale(1.05);
+.note-img:hover {
+  transform: scale(1.05);
 }
 
 /* ===========================
-   Full Screen Image Viewer
+   Lightbox
    =========================== */
 
-<div class="lightbox" id="lightbox">
-    <span class="prev">&#10094;</span>
-
-    <img id="lightbox-img" src="" alt="">
-
-    <span class="next">&#10095;</span>
-</div>
-
-<script>
-const images = document.querySelectorAll(".note-img");
-
-const lightbox = document.getElementById("lightbox");
-const lightboxImg = document.getElementById("lightbox-img");
-
-const prev = document.querySelector(".prev");
-const next = document.querySelector(".next");
-
-let current = 0;
-
-function showImage(index){
-    current = index;
-    lightboxImg.src = images[current].src;
+.lightbox {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.95);
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
 }
 
-images.forEach((img,index)=>{
-    img.addEventListener("click",()=>{
-        lightbox.classList.add("show");
-        showImage(index);
-    });
-});
-
-next.addEventListener("click",(e)=>{
-    e.stopPropagation();
-    current=(current+1)%images.length;
-    showImage(current);
-});
-
-prev.addEventListener("click",(e)=>{
-    e.stopPropagation();
-    current=(current-1+images.length)%images.length;
-    showImage(current);
-});
-
-document.addEventListener("keydown",(e)=>{
-    if(!lightbox.classList.contains("show")) return;
-
-    if(e.key==="ArrowRight"){
-        current=(current+1)%images.length;
-        showImage(current);
-    }
-
-    if(e.key==="ArrowLeft"){
-        current=(current-1+images.length)%images.length;
-        showImage(current);
-    }
-
-    if(e.key==="Escape"){
-        lightbox.classList.remove("show");
-    }
-});
-
-lightbox.addEventListener("click",()=>{
-    lightbox.classList.remove("show");
-});
-  .prev,
-.next{
-    position:absolute;
-    top:50%;
-    transform:translateY(-50%);
-    font-size:50px;
-    color:white;
-    cursor:pointer;
-    user-select:none;
-    padding:20px;
+.lightbox.show {
+  display: flex;
 }
 
-.prev{
-    left:20px;
+.lightbox img {
+  width: 95vw;
+  height: 95vh;
+  object-fit: contain;
+  border-radius: 6px;
 }
 
-.next{
-    right:20px;
+/* ===========================
+   Navigation Arrows
+   =========================== */
+
+.prev,
+.next {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 50px;
+  color: white;
+  cursor: pointer;
+  user-select: none;
+  padding: 20px;
+  transition: color 0.2s;
+}
+
+.prev {
+  left: 20px;
+}
+
+.next {
+  right: 20px;
 }
 
 .prev:hover,
-.next:hover{
-    color:#e6b65b;
+.next:hover {
+  color: #e6b65b;
 }
-</script>
