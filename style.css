@@ -127,26 +127,25 @@ footer {
    =========================== */
 
 .lightbox {
-  display: none;
-  position: fixed;
-  inset: 0;
-  background: rgba(0,0,0,0.95);
-  justify-content: center;
-  align-items: center;
-  z-index: 9999;
-}
-
-.lightbox.show {
-  display: flex;
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.95);
+    justify-content: center;
+    align-items: center;
+    padding: 30px;
+    box-sizing: border-box;
+    z-index: 9999;
 }
 
 .lightbox img {
-  width: 95vw;
-  height: 95vh;
-  object-fit: contain;
-  border-radius: 6px;
+    max-width: 100%;
+    max-height: 100%;
+    width: auto;
+    height: auto;
+    object-fit: contain;
+    border-radius: 6px;
 }
-
 /* ===========================
    Navigation Arrows
    =========================== */
