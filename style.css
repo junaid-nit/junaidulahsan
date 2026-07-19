@@ -172,4 +172,28 @@ document.addEventListener("keydown",(e)=>{
 lightbox.addEventListener("click",()=>{
     lightbox.classList.remove("show");
 });
+  .prev,
+.next{
+    position:absolute;
+    top:50%;
+    transform:translateY(-50%);
+    font-size:50px;
+    color:white;
+    cursor:pointer;
+    user-select:none;
+    padding:20px;
+}
+
+.prev{
+    left:20px;
+}
+
+.next{
+    right:20px;
+}
+
+.prev:hover,
+.next:hover{
+    color:#e6b65b;
+}
 </script>
