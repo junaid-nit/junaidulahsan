@@ -126,7 +126,7 @@ footer {
    Lightbox
    =========================== */
 .lightbox {
-    display: none;
+    display: none;          /* Hidden by default */
     position: fixed;
     inset: 0;
     background: rgba(0,0,0,0.95);
@@ -135,6 +135,10 @@ footer {
     padding: 30px;
     box-sizing: border-box;
     z-index: 9999;
+}
+
+.lightbox.show {
+    display: flex;          /* Show when JavaScript adds the class */
 }
 
 .lightbox img {
