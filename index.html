@@ -112,5 +112,24 @@ As an educator, my teaching philosophy emphasises clarity, problem-solving, and 
   <footer>
     <p>© 2025 Junaid Ul Ahsan · Crafted with patience and precision</p>
   </footer>
+  <div class="lightbox" id="lightbox">
+    <img id="lightbox-img" src="" alt="">
+</div>
+
+<script>
+const lightbox = document.getElementById("lightbox");
+const lightboxImg = document.getElementById("lightbox-img");
+
+document.querySelectorAll(".note-img").forEach(img => {
+    img.addEventListener("click", function(){
+        lightboxImg.src = this.src;
+        lightbox.classList.add("show");
+    });
+});
+
+lightbox.addEventListener("click", function(){
+    lightbox.classList.remove("show");
+});
+</script>
 </body>
 </html>
