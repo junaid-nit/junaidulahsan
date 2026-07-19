@@ -125,7 +125,6 @@ footer {
 /* ===========================
    Lightbox
    =========================== */
-
 .lightbox {
     display: none;
     position: fixed;
@@ -139,8 +138,8 @@ footer {
 }
 
 .lightbox img {
-    max-width: 90%;
-    max-height: 90%;
+    max-width: 100%;
+    max-height: 100%;
     width: auto;
     height: auto;
     object-fit: contain;
