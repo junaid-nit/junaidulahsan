@@ -113,22 +113,69 @@ As an educator, my teaching philosophy emphasises clarity, problem-solving, and 
   <footer>
     <p>© 2025 Junaid Ul Ahsan · Crafted with patience and precision</p>
   </footer>
-  <div class="lightbox" id="lightbox">
+  
+<div class="lightbox" id="lightbox">
+    <span class="prev">&#10094;</span>
+
     <img id="lightbox-img" src="" alt="">
+
+    <span class="next">&#10095;</span>
 </div>
 
 <script>
+const images = document.querySelectorAll(".note-img");
+
 const lightbox = document.getElementById("lightbox");
 const lightboxImg = document.getElementById("lightbox-img");
 
-document.querySelectorAll(".note-img").forEach(img => {
-    img.addEventListener("click", function(){
-        lightboxImg.src = this.src;
+const prev = document.querySelector(".prev");
+const next = document.querySelector(".next");
+
+let current = 0;
+
+function showImage(index){
+    current = index;
+    lightboxImg.src = images[current].src;
+}
+
+images.forEach((img,index)=>{
+    img.addEventListener("click",()=>{
         lightbox.classList.add("show");
+        showImage(index);
     });
 });
 
-lightbox.addEventListener("click", function(){
+next.addEventListener("click",(e)=>{
+    e.stopPropagation();
+    current=(current+1)%images.length;
+    showImage(current);
+});
+
+prev.addEventListener("click",(e)=>{
+    e.stopPropagation();
+    current=(current-1+images.length)%images.length;
+    showImage(current);
+});
+
+document.addEventListener("keydown",(e)=>{
+    if(!lightbox.classList.contains("show")) return;
+
+    if(e.key==="ArrowRight"){
+        current=(current+1)%images.length;
+        showImage(current);
+    }
+
+    if(e.key==="ArrowLeft"){
+        current=(current-1+images.length)%images.length;
+        showImage(current);
+    }
+
+    if(e.key==="Escape"){
+        lightbox.classList.remove("show");
+    }
+});
+
+lightbox.addEventListener("click",()=>{
     lightbox.classList.remove("show");
 });
 </script>
