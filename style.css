@@ -108,26 +108,68 @@ footer {
    Full Screen Image Viewer
    =========================== */
 
-.lightbox{
-    display:none;
-    position:fixed;
-    top:0;
-    left:0;
-    width:100%;
-    height:100%;
-    background:rgba(0,0,0,0.95);
-    justify-content:center;
-    align-items:center;
-    z-index:9999;
+<div class="lightbox" id="lightbox">
+    <span class="prev">&#10094;</span>
+
+    <img id="lightbox-img" src="" alt="">
+
+    <span class="next">&#10095;</span>
+</div>
+
+<script>
+const images = document.querySelectorAll(".note-img");
+
+const lightbox = document.getElementById("lightbox");
+const lightboxImg = document.getElementById("lightbox-img");
+
+const prev = document.querySelector(".prev");
+const next = document.querySelector(".next");
+
+let current = 0;
+
+function showImage(index){
+    current = index;
+    lightboxImg.src = images[current].src;
 }
 
-.lightbox.show{
-    display:flex;
-}
+images.forEach((img,index)=>{
+    img.addEventListener("click",()=>{
+        lightbox.classList.add("show");
+        showImage(index);
+    });
+});
 
-.lightbox img{
-    width:95vw;
-    height:95vh;
-    object-fit:contain;
-    border-radius:6px;
-}
+next.addEventListener("click",(e)=>{
+    e.stopPropagation();
+    current=(current+1)%images.length;
+    showImage(current);
+});
+
+prev.addEventListener("click",(e)=>{
+    e.stopPropagation();
+    current=(current-1+images.length)%images.length;
+    showImage(current);
+});
+
+document.addEventListener("keydown",(e)=>{
+    if(!lightbox.classList.contains("show")) return;
+
+    if(e.key==="ArrowRight"){
+        current=(current+1)%images.length;
+        showImage(current);
+    }
+
+    if(e.key==="ArrowLeft"){
+        current=(current-1+images.length)%images.length;
+        showImage(current);
+    }
+
+    if(e.key==="Escape"){
+        lightbox.classList.remove("show");
+    }
+});
+
+lightbox.addEventListener("click",()=>{
+    lightbox.classList.remove("show");
+});
+</script>
