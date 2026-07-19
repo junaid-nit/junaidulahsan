@@ -121,13 +121,10 @@ As an educator, my teaching philosophy emphasises clarity, problem-solving, and 
 
     <span class="next">&#10095;</span>
 </div>
-
 <script>
 const images = document.querySelectorAll(".note-img");
-
 const lightbox = document.getElementById("lightbox");
 const lightboxImg = document.getElementById("lightbox-img");
-
 const prev = document.querySelector(".prev");
 const next = document.querySelector(".next");
 
@@ -140,20 +137,20 @@ function showImage(index){
 
 images.forEach((img,index)=>{
     img.addEventListener("click",()=>{
-        lightbox.classList.add("show");
         showImage(index);
+        lightbox.classList.add("show");
     });
 });
 
 next.addEventListener("click",(e)=>{
     e.stopPropagation();
-    current=(current+1)%images.length;
+    current = (current+1)%images.length;
     showImage(current);
 });
 
 prev.addEventListener("click",(e)=>{
     e.stopPropagation();
-    current=(current-1+images.length)%images.length;
+    current = (current-1+images.length)%images.length;
     showImage(current);
 });
 
@@ -175,8 +172,10 @@ document.addEventListener("keydown",(e)=>{
     }
 });
 
-lightbox.addEventListener("click",()=>{
-    lightbox.classList.remove("show");
+lightbox.addEventListener("click",(e)=>{
+    if(e.target===lightbox){
+        lightbox.classList.remove("show");
+    }
 });
 </script>
 </body>
